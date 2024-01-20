@@ -37,6 +37,13 @@ struct DnD: View {
                             .resizable()
                             .frame(width: 80, height: 80)
                             .offset(toy[index].dragOffset)
+                            .accessibilityElement(children: .combine)
+                            .accessibilityAddTraits(.isImage)
+                            .accessibilityHint("robot")
+                            .accessibilityHint("car")
+                            .accessibilityHint("teddybear")
+                            .accessibilityHint("dinosaur")
+                            
                             .gesture(
                                 DragGesture()
                                     .onChanged { gesture in
@@ -74,6 +81,8 @@ struct DnD: View {
                                     .resizable()
                                     .frame(width: 40, height: 40)
                                     .position(x: 100, y: 100)
+                                    .accessibilityElement(children: .combine)
+                                    .accessibilityAddTraits(.isImage)
                             }
                         }
                     }

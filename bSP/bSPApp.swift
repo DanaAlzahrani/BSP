@@ -11,7 +11,7 @@ import SwiftUI
 struct bSPApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DnD()
         }
     }
 }
