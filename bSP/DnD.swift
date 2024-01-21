@@ -30,6 +30,44 @@ struct DnD: View {
             Text("Test Drag and Drop")
                 .font(.largeTitle)
             
+//            HStack {
+//                ForEach(toy.indices, id: \.self) { index in
+//                    if !toy[index].isPlaced {
+//                        Image(toy[index].name)
+//                            .resizable()
+//                            .frame(width: 80, height: 80)
+//                            .offset(toy[index].dragOffset)
+//                            .accessibilityElement(children: .combine)
+//                            .accessibilityAddTraits(.isImage)
+//                            .accessibilityHint("robot")
+//                            .accessibilityHint("car")
+//                            .accessibilityHint("teddybear")
+//                            .accessibilityHint("dinosaur")
+//                            
+//                            .gesture(
+//                                DragGesture()
+//                                    .onChanged { gesture in
+//                                        toy[index].dragOffset = gesture.translation
+//                                    }
+//                                    .onEnded { gesture in
+//                                        let newPosition = CGPoint(
+//                                            x: toy[index].position.x + gesture.translation.width,
+//                                            y: toy[index].position.y + gesture.translation.height
+//                                        )
+//                                        
+//                                        if newPosition.x > 0 && newPosition.x < 200 &&
+//                                           newPosition.y > 0 && newPosition.y < 200 {
+//                                            toy[index].isPlaced = true
+//                                        }
+//                                        
+//                                        toy[index].position = newPosition
+//                                        toy[index].dragOffset = .zero
+//                                    }
+//                            )
+//                    }
+//                }
+//            }
+            
             HStack {
                 ForEach(toy.indices, id: \.self) { index in
                     if !toy[index].isPlaced {
@@ -43,7 +81,6 @@ struct DnD: View {
                             .accessibilityHint("car")
                             .accessibilityHint("teddybear")
                             .accessibilityHint("dinosaur")
-                            
                             .gesture(
                                 DragGesture()
                                     .onChanged { gesture in
@@ -56,12 +93,10 @@ struct DnD: View {
                                         )
                                         
                                         if newPosition.x > 0 && newPosition.x < 200 &&
-                                           newPosition.y > 0 && newPosition.y < 200 {
+                                            newPosition.y > 0 && newPosition.y < 200 {
                                             toy[index].isPlaced = true
+                                            toy.remove(at: index)
                                         }
-                                        
-                                        toy[index].position = newPosition
-                                        toy[index].dragOffset = .zero
                                     }
                             )
                     }
@@ -83,17 +118,28 @@ struct DnD: View {
                                     .position(x: 100, y: 100)
                                     .accessibilityElement(children: .combine)
                                     .accessibilityAddTraits(.isImage)
+                                
+                                
                             }
                         }
                     }
                 )
             
             Spacer()
-        }
-    }
+            
+            
+            
+        }// vstack end
+        
+        
+        
+    } // end body
 
-}
+}// end struct
 
+
+
+//-----------
 struct DnD_Previews: PreviewProvider {
     static var previews: some View {
         DnD()
