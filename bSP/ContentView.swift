@@ -8,15 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isActive = false
+
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+      if isActive
+        {
+          DnD()
+      }else{
+            
+            VStack{
+                Text("Test Drag and Drop")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.purple)
+                    .multilineTextAlignment(.center)
+                
+                Image("toyBox")
+                    .resizable()
+                    .frame(width: 300, height: 300)
+                
+            }//to make it move to the next page after 3 seconds
+            .onAppear(){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                    self.isActive = true
+                }
+            }
+          
+          
+      }
+
+
+        
+     }
 }
 
 #Preview {
