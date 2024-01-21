@@ -10,7 +10,7 @@ import SwiftUI
 struct Toys: Identifiable {
     let id = UUID()
     let name: String
-    var position = CGPoint(x: 100, y: 100)
+    var position = CGPoint(x: 100, y: 100)// core Graphics position for the array
     var dragOffset = CGSize.zero
     var isPlaced = false
 }
@@ -25,6 +25,8 @@ struct DnD: View {
     ]
     
     @State private var isActive = false
+    @State private var showAlert = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -41,18 +43,20 @@ struct DnD: View {
                             .resizable()
                             .frame(width: 80, height: 80)
                             .offset(toy[index].dragOffset)
+                        // accessability code
                             .accessibilityElement(children: .combine)
                             .accessibilityAddTraits(.isImage)
                             .accessibilityHint("robot")
                             .accessibilityHint("car")
                             .accessibilityHint("teddybear")
                             .accessibilityHint("dinosaur")
+                        // drag code
                             .gesture(
                                 DragGesture()
                                     .onChanged { gesture in
                                         toy[index].dragOffset = gesture.translation
                                        
-                                    }
+                                    }//drop code
                                     .onEnded { gesture in
                                         let newPosition = CGPoint(
                                             x: toy[index].position.x + gesture.translation.width,
@@ -98,13 +102,19 @@ struct DnD: View {
 //                        }) {
 //                            Text("Shuffle")
 //                        }
+//            
+
+
+//            Button("Refresh") {
+//                isActive = true
+//            }
+
             
-
-
-            Button("Refresh") {
-                isActive = true
-            }
-
+//                        Button("Done") {
+//                            showAlert = true
+//                            isActive = true
+//
+//                        }
 
             Spacer()
             
@@ -112,6 +122,9 @@ struct DnD: View {
             
         }// vstack end
         .fullScreenCover(isPresented: $isActive, content: DnD.init)
+        .alert(isPresented: $showAlert) { () -> Alert in
+                    Alert(title: Text("Congrats you did great"))
+                }
             
         
         
