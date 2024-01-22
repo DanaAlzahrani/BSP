@@ -17,13 +17,23 @@ struct ContentView: View {
         {
           DnD()
       }else{
+        
             
             VStack{
+
                 Text("Test Drag and Drop")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.purple)
-                    .multilineTextAlignment(.center)
+//                
+//                Image("fire")
+//                    .resizable()
+//                    .frame(width:100 ,height: 100)
+                
+//                Image("fire")
+//                    .resizable ()
+//                    .frame(width:300 ,height: 300)
+                    
                 
                 Image("toyBox")
                     .resizable()

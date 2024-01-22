@@ -96,6 +96,9 @@ struct DnD: View {
                     }
                 )
 
+            Button("shuufle") {
+                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+            }
 //            Button(action: {
 //                
 //                            self.toy.shuffle()
